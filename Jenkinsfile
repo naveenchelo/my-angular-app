@@ -16,7 +16,12 @@ pipeline {
 
     stage('Install Node.js') {
       steps {
-        sh 'node -v || nvm install 18'
+        sh '''
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install ${NODE_VERSION}
+          nvm use ${NODE_VERSION}
+        '''
       }
     }
 
@@ -34,7 +39,7 @@ pipeline {
 
     stage('Build Angular App') {
       steps {
-        sh 'npm run build -- --output-path=dist'
+        sh 'npm run build -- --configuration=production'
       }
     }
 
@@ -74,7 +79,6 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'dist/**/*'
-      junit 'coverage/**/TESTS-*.xml'
       cleanWs()
     }
   }
