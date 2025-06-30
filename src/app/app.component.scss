@@ -1,0 +1,32 @@
+.jenkins-ui {
+    max-width: 400px;
+    margin: auto;
+}
+
+.job-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.success {
+    color: green;
+}
+
+.failure {
+    color: red;
+}
+
+.running {
+    color: orange;
+}
+
+.message {
+    margin-top: 10px;
+    color: #1976d2;
+}
+
+button {
+    margin-top: 10px;
+}
