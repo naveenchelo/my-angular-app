@@ -18,10 +18,12 @@ pipeline {
       steps {
         sh '''
           export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install ${NODE_VERSION}
-          nvm use ${NODE_VERSION}
-        '''
+          if [ -s "$NVM_DIR/nvm.sh" ]; then
+            . "$NVM_DIR/nvm.sh"
+          fi
+          nvm install 18
+          nvm use 18
+        '''  
       }
     }
 
